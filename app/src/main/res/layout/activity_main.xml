@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/txtSix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/num_background"
+        android:foreground="@drawable/ripple_background"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:paddingBottom="4dp"
+        android:text="@string/six"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintBottom_toBottomOf="@+id/txtFive"
+        app:layout_constraintEnd_toEndOf="@+id/txtThree"
+        app:layout_constraintTop_toTopOf="@+id/txtFive" />
+
+    <TextView
+        android:id="@+id/txtEight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/num_background"
+        android:foreground="@drawable/ripple_background"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:paddingBottom="4dp"
+        android:text="@string/eight"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintBottom_toBottomOf="@+id/txtSeven"
+        app:layout_constraintEnd_toEndOf="@+id/txtFive"
+        app:layout_constraintStart_toStartOf="@+id/txtFive"
+        app:layout_constraintTop_toTopOf="@+id/txtSeven" />
+
+    <TextView
+        android:id="@+id/txtOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/num_background"
+        android:foreground="@drawable/ripple_background"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:paddingBottom="4dp"
+        android:text="@string/one"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+
+    <TextView
+        android:id="@+id/txtTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/num_background"
+        android:foreground="@drawable/ripple_background"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:paddingBottom="4dp"
+        android:text="@string/two"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintBottom_toBottomOf="@+id/txtOne"
+        app:layout_constraintEnd_toStartOf="@+id/txtThree"
+        app:layout_constraintStart_toEndOf="@+id/txtOne"
+        app:layout_constraintTop_toTopOf="@+id/txtOne"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txtThree"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/num_background"
+        android:foreground="@drawable/ripple_background"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:paddingBottom="4dp"
+        android:text="@string/three"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintBottom_toBottomOf="@+id/txtTwo"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
+        app:layout_constraintTop_toTopOf="@+id/txtTwo"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txtFour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/num_background"
+        android:foreground="@drawable/ripple_background"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:paddingBottom="4dp"
+        android:text="@string/four"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintStart_toStartOf="@+id/txtOne"
+        app:layout_constraintTop_toBottomOf="@+id/txtOne" />
+
+    <TextView
+        android:id="@+id/txtFive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/num_background"
+        android:foreground="@drawable/ripple_background"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:paddingBottom="4dp"
+        android:text="@string/five"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintBottom_toBottomOf="@+id/txtFour"
+        app:layout_constraintEnd_toEndOf="@+id/txtTwo"
+        app:layout_constraintStart_toStartOf="@+id/txtTwo"
+        app:layout_constraintTop_toTopOf="@+id/txtFour" />
+
+    <TextView
+        android:id="@+id/txtSeven"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/num_background"
+        android:foreground="@drawable/ripple_background"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:paddingBottom="4dp"
+        android:text="@string/seven"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintStart_toStartOf="@+id/txtFour"
+        app:layout_constraintTop_toBottomOf="@+id/txtFour" />
+
+    <TextView
+        android:id="@+id/txtNine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/num_background"
+        android:foreground="@drawable/ripple_background"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:paddingBottom="4dp"
+        android:text="@string/nine"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintBottom_toBottomOf="@+id/txtEight"
+        app:layout_constraintEnd_toEndOf="@+id/txtSix"
+        app:layout_constraintTop_toTopOf="@+id/txtEight" />
+
+    <TextView
+        android:id="@+id/txtZero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/num_background"
+        android:foreground="@drawable/ripple_background"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:paddingBottom="4dp"
+        android:text="@string/zero"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintEnd_toEndOf="@+id/txtEight"
+        app:layout_constraintStart_toStartOf="@+id/txtEight"
+        app:layout_constraintTop_toBottomOf="@+id/txtEight" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/txtZero"
+        app:layout_constraintEnd_toEndOf="@+id/txtNine"
+        app:layout_constraintStart_toStartOf="@+id/txtNine"
+        app:layout_constraintTop_toTopOf="@+id/txtZero"
+        app:srcCompat="@drawable/ic_baseline_backspace_24" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="64dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
