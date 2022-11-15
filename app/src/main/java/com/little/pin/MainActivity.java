@@ -14,8 +14,9 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding mainBinding;
     View mainView;
-    String pin = null;
+    String pin = "";
     char p;
+    StringBuffer sb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.txtOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (pin.length() <= 4){
-                    p = '1';
+                p = '1';
+                if (pin != null && pin.length() <= 3){
                     pin = pin + p;
                     Toast.makeText(MainActivity.this, pin, Toast.LENGTH_SHORT).show();
                 }
@@ -39,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.txtTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (pin.length() <= 4) {
-                    p = '2';
+                p = '2';
+                if (pin != null && pin.length() <= 3) {
                     pin = pin + p;
                     Toast.makeText(MainActivity.this, pin, Toast.LENGTH_SHORT).show();
                 }
@@ -50,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.txtThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (pin.length() <= 4) {
-                    p = '3';
+                p = '3';
+                if (pin != null && pin.length() <= 3) {
                     pin = pin + p;
                     Toast.makeText(MainActivity.this, pin, Toast.LENGTH_SHORT).show();
                 }
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 p = '4';
-                if (pin.length() == 0) {
+                if (pin != null && pin.length() <= 3) {
                     pin = pin + p;
                     Toast.makeText(MainActivity.this, pin, Toast.LENGTH_SHORT).show();
                 }
@@ -72,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.txtFive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (pin.length() <= 4) {
-                    p = '5';
+                p = '5';
+                if (pin != null && pin.length() <= 3) {
                     pin = pin + p;
                     Toast.makeText(MainActivity.this, pin, Toast.LENGTH_SHORT).show();
                 }
@@ -83,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.txtSix.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (pin.length() <= 4) {
-                    p = '6';
+                p = '6';
+                if (pin != null && pin.length() <= 3) {
                     pin = pin + p;
                     Toast.makeText(MainActivity.this, pin, Toast.LENGTH_SHORT).show();
                 }
@@ -94,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.txtSeven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (pin.length() <= 4) {
-                    p = '7';
+                p = '7';
+                if (pin != null && pin.length() <= 3) {
                     pin = pin + p;
                     Toast.makeText(MainActivity.this, pin, Toast.LENGTH_SHORT).show();
                 }
@@ -105,8 +106,8 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.txtEight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (pin.length() <= 4) {
-                    p = '8';
+                p = '8';
+                if (pin != null && pin.length() <= 3) {
                     pin = pin + p;
                     Toast.makeText(MainActivity.this, pin, Toast.LENGTH_SHORT).show();
                 }
@@ -116,8 +117,8 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.txtNine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (pin.length() <= 4) {
-                    p = '9';
+                p = '9';
+                if (pin != null && pin.length() <= 3) {
                     pin = pin + p;
                     Toast.makeText(MainActivity.this, pin, Toast.LENGTH_SHORT).show();
                 }
@@ -127,12 +128,27 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.txtZero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (pin.length() <= 4) {
-                    p = '0';
+                p = '0';
+                if (pin != null && pin.length() <= 3) {
                     pin = pin + p;
                     Toast.makeText(MainActivity.this, pin, Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+        mainBinding.imgBackSpace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (pin.length() > 0){
+                    sb = new StringBuffer(pin);
+                    sb.deleteCharAt(sb.length()-1);
+                    Toast.makeText(MainActivity.this, sb, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
+
+    private void fillCircleDrawables(){}
+
+    private void unFillCircleDrawables(){}
 }

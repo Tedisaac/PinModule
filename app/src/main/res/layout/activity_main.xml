@@ -154,10 +154,12 @@
         app:layout_constraintTop_toBottomOf="@+id/txtEight" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgBackSpace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
+        android:background="@drawable/ripple_background"
+        android:foreground="@drawable/backspace_transparent_background"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/txtZero"
         app:layout_constraintEnd_toEndOf="@+id/txtNine"
