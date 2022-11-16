@@ -10,4 +10,7 @@
     <string name="seven">7</string>
     <string name="eight">8</string>
     <string name="nine">9</string>
+    <string name="Welcome">Welcome</string>
+    <string name="enter_pin">Enter Current Pin : </string>
+    <string name="enter_new_pin">Enter New Pin : </string>
 </resources>
