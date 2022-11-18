@@ -3,21 +3,10 @@ package com.little.pin;
 import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.little.pin.databinding.ActivityMainBinding;
@@ -30,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
     String realPin = "2022";
     char p;
     StringBuffer sb;
+    Helper helper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +29,13 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
 
         getSupportActionBar().hide();
 
+        helper = new Helper();
+
+        clickListeners();
+
+    }
+
+    private void clickListeners() {
         mainBinding.txtOne.setOnClickListener(this);
         mainBinding.txtTwo.setOnClickListener(this);
         mainBinding.txtThree.setOnClickListener(this);
@@ -49,18 +46,16 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         mainBinding.txtEight.setOnClickListener(this);
         mainBinding.txtNine.setOnClickListener(this);
         mainBinding.txtZero.setOnClickListener(this);
+        mainBinding.imgBackSpace.setOnClickListener(this);
+    }
 
-        mainBinding.imgBackSpace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sb = new StringBuffer(pin);
-                if (pin.length() >= 1){
-                    sb.deleteCharAt(sb.length()-1);
-                    pin = sb.toString();
-                    unFillCircleDrawables();
-                }
-            }
-        });
+    private void removeCharFromPin() {
+        sb = new StringBuffer(pin);
+        if (pin.length() >= 1){
+            sb.deleteCharAt(sb.length()-1);
+            pin = sb.toString();
+            unFillCircleDrawables();
+        }
     }
 
     private void AddCharToPin(char p) {
@@ -73,151 +68,122 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
 
     private void fillCircleDrawables(){
         if (pin.length() == 1){
-            animateCircle(mainBinding.imgPinCircle1);
-            mainBinding.imgPinCircle1.setBackground(ContextCompat.getDrawable(this, R.drawable.filled_circle));
+            helper.animateCircle(mainBinding.imgPinCircle1);
+            helper.setBackgroundFilledCircle(this, mainBinding.imgPinCircle1);
         }if (pin.length() == 2){
-            animateCircle(mainBinding.imgPinCircle2);
-            mainBinding.imgPinCircle2.setBackground(ContextCompat.getDrawable(this, R.drawable.filled_circle));
+            helper.animateCircle(mainBinding.imgPinCircle2);
+            helper.setBackgroundFilledCircle(this, mainBinding.imgPinCircle2);
         }if (pin.length() == 3){
-            animateCircle(mainBinding.imgPinCircle3);
-            mainBinding.imgPinCircle3.setBackground(ContextCompat.getDrawable(this, R.drawable.filled_circle));
+            helper.animateCircle(mainBinding.imgPinCircle3);
+            helper.setBackgroundFilledCircle(this, mainBinding.imgPinCircle3);
         }if (pin.length() == 4){
-            animateCircle(mainBinding.imgPinCircle4);
-            mainBinding.imgPinCircle4.setBackground(ContextCompat.getDrawable(this, R.drawable.filled_circle));
+            helper.animateCircle(mainBinding.imgPinCircle4);
+            helper.setBackgroundFilledCircle(this, mainBinding.imgPinCircle4);
         }
     }
 
     private void fillErrorCircleDrawables() {
-        setImageHollowRedCircle(mainBinding.imgPinCircle1);
-        setImageHollowRedCircle(mainBinding.imgPinCircle2);
-        setImageHollowRedCircle(mainBinding.imgPinCircle3);
-        setImageHollowRedCircle(mainBinding.imgPinCircle4);
+        helper.setImageHollowRedCircle(mainBinding.imgPinCircle1);
+        helper.setImageHollowRedCircle(mainBinding.imgPinCircle2);
+        helper.setImageHollowRedCircle(mainBinding.imgPinCircle3);
+        helper.setImageHollowRedCircle(mainBinding.imgPinCircle4);
 
-        mainBinding.imgPinCircle1.setBackground(ContextCompat.getDrawable(this, R.drawable.red_filled_circle));
-        mainBinding.imgPinCircle2.setBackground(ContextCompat.getDrawable(this, R.drawable.red_filled_circle));
-        mainBinding.imgPinCircle3.setBackground(ContextCompat.getDrawable(this, R.drawable.red_filled_circle));
-        mainBinding.imgPinCircle4.setBackground(ContextCompat.getDrawable(this, R.drawable.red_filled_circle));
+        helper.setBackgroundFilledRedCircle(this, mainBinding.imgPinCircle1);
+        helper.setBackgroundFilledRedCircle(this, mainBinding.imgPinCircle2);
+        helper.setBackgroundFilledRedCircle(this, mainBinding.imgPinCircle3);
+        helper.setBackgroundFilledRedCircle(this, mainBinding.imgPinCircle4);
 
-        final Animation animShake = AnimationUtils.loadAnimation(this, R.anim.shake);
-        mainBinding.imgPinCircle1.startAnimation(animShake);
-        mainBinding.imgPinCircle2.startAnimation(animShake);
-        mainBinding.imgPinCircle3.startAnimation(animShake);
-        mainBinding.imgPinCircle4.startAnimation(animShake);
+        helper.shakeAnimation(this,mainBinding.imgPinCircle1);
+        helper.shakeAnimation(this,mainBinding.imgPinCircle2);
+        helper.shakeAnimation(this,mainBinding.imgPinCircle3);
+        helper.shakeAnimation(this,mainBinding.imgPinCircle4);
     }
 
     private void unFillCircleDrawables(){
         if (pin.length() == 1){
-            animateCircle(mainBinding.imgPinCircle2);
-            mainBinding.imgPinCircle2.setBackground(ContextCompat.getDrawable(this, R.drawable.hollow_circle));
+            helper.animateCircle(mainBinding.imgPinCircle2);
+            helper.setBackgroundHollowCircle(this, mainBinding.imgPinCircle2);
         }if (pin.length() == 2){
-            animateCircle(mainBinding.imgPinCircle3);
-            mainBinding.imgPinCircle3.setBackground(ContextCompat.getDrawable(this, R.drawable.hollow_circle));
+            helper.animateCircle(mainBinding.imgPinCircle3);
+            helper.setBackgroundHollowCircle(this, mainBinding.imgPinCircle3);
         }if (pin.length() == 3){
-            animateCircle(mainBinding.imgPinCircle4);
-            mainBinding.imgPinCircle4.setBackground(ContextCompat.getDrawable(this, R.drawable.hollow_circle));
+            helper.animateCircle(mainBinding.imgPinCircle4);
+            helper.setBackgroundHollowCircle(this, mainBinding.imgPinCircle4);
         }if (pin.length() == 0){
-            animateCircle(mainBinding.imgPinCircle1);
-            mainBinding.imgPinCircle1.setBackground(ContextCompat.getDrawable(this, R.drawable.hollow_circle));
+            helper.animateCircle(mainBinding.imgPinCircle1);
+            helper.setBackgroundHollowCircle(this, mainBinding.imgPinCircle1);
         }
     }
 
     private void unFillAllCircleDrawables() {
 
-        setImageHollowCircle(mainBinding.imgPinCircle1);
-        setImageHollowCircle(mainBinding.imgPinCircle2);
-        setImageHollowCircle(mainBinding.imgPinCircle3);
-        setImageHollowCircle(mainBinding.imgPinCircle4);
+        helper.setImageHollowCircle(mainBinding.imgPinCircle1);
+        helper.setImageHollowCircle(mainBinding.imgPinCircle2);
+        helper.setImageHollowCircle(mainBinding.imgPinCircle3);
+        helper.setImageHollowCircle(mainBinding.imgPinCircle4);
 
-        mainBinding.imgPinCircle1.setBackground(ContextCompat.getDrawable(this, R.drawable.hollow_circle));
-        mainBinding.imgPinCircle2.setBackground(ContextCompat.getDrawable(this, R.drawable.hollow_circle));
-        mainBinding.imgPinCircle3.setBackground(ContextCompat.getDrawable(this, R.drawable.hollow_circle));
-        mainBinding.imgPinCircle4.setBackground(ContextCompat.getDrawable(this, R.drawable.hollow_circle));
-    }
-
-    private void animateCircle(View view) {
-        ObjectAnimator objAnimator = ObjectAnimator.ofFloat(view, "alpha",0f,1f);
-        objAnimator.setDuration(1000);
-        objAnimator.start();
-    }
-
-    private void setImageHollowCircle(ImageView view) {
-        view.setImageResource(R.drawable.hollow_circle);
-    }
-
-    private void setImageHollowRedCircle(ImageView view) {
-        view.setImageResource(R.drawable.hollow_red_circle);
+        helper.setBackgroundHollowCircle(this, mainBinding.imgPinCircle1);
+        helper.setBackgroundHollowCircle(this, mainBinding.imgPinCircle2);
+        helper.setBackgroundHollowCircle(this, mainBinding.imgPinCircle3);
+        helper.setBackgroundHollowCircle(this, mainBinding.imgPinCircle4);
     }
 
     private void checkPinLength() {
         if (pin.length() == 4){
-            if(realPin.equals(pin)){
-                switchToSecondScreen();
-            }else{
-                disableNumbers();
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        pin = "";
-                        enableNumbers();
+            disableNumbers();
+            helper.animateRepeatCircle(mainBinding.imgPinCircle1);
+            helper.animateRepeatCircle(mainBinding.imgPinCircle2);
+            helper.animateRepeatCircle(mainBinding.imgPinCircle3);
+            helper.animateRepeatCircle(mainBinding.imgPinCircle4);
+            final Handler pinLengthHandler = new Handler();
+            pinLengthHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(realPin.equals(pin)){
+                        switchToSecondScreen();
+                    }else{
+                        fillErrorCircleDrawables();
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                pin = "";
+                                enableNumbers();
+                            }
+                        }, 1000);
                     }
-                }, 1000);
-            }
+                }
+            },3000);
+
         }
     }
 
     private void enableNumbers() {
-        mainBinding.txtOne.setEnabled(true);
-        mainBinding.txtOne.setClickable(true);
-        mainBinding.txtTwo.setEnabled(true);
-        mainBinding.txtTwo.setClickable(true);
-        mainBinding.txtThree.setEnabled(true);
-        mainBinding.txtThree.setClickable(true);
-        mainBinding.txtFour.setEnabled(true);
-        mainBinding.txtFour.setClickable(true);
-        mainBinding.txtFive.setEnabled(true);
-        mainBinding.txtFive.setClickable(true);
-        mainBinding.txtSix.setEnabled(true);
-        mainBinding.txtSix.setClickable(true);
-        mainBinding.txtSeven.setEnabled(true);
-        mainBinding.txtSeven.setClickable(true);
-        mainBinding.txtEight.setEnabled(true);
-        mainBinding.txtEight.setClickable(true);
-        mainBinding.txtNine.setEnabled(true);
-        mainBinding.txtNine.setClickable(true);
-        mainBinding.txtZero.setEnabled(true);
-        mainBinding.txtZero.setClickable(true);
-        mainBinding.imgBackSpace.setEnabled(true);
-        mainBinding.imgBackSpace.setClickable(true);
+        helper.enableNumber(mainBinding.txtOne);
+        helper.enableNumber(mainBinding.txtTwo);
+        helper.enableNumber(mainBinding.txtThree);
+        helper.enableNumber(mainBinding.txtFour);
+        helper.enableNumber(mainBinding.txtFive);
+        helper.enableNumber(mainBinding.txtSix);
+        helper.enableNumber(mainBinding.txtSeven);
+        helper.enableNumber(mainBinding.txtEight);
+        helper.enableNumber(mainBinding.txtNine);
+        helper.enableNumber(mainBinding.txtZero);
 
         unFillAllCircleDrawables();
     }
 
     private void disableNumbers() {
-        mainBinding.txtOne.setEnabled(false);
-        mainBinding.txtOne.setClickable(false);
-        mainBinding.txtTwo.setEnabled(false);
-        mainBinding.txtTwo.setClickable(false);
-        mainBinding.txtThree.setEnabled(false);
-        mainBinding.txtThree.setClickable(false);
-        mainBinding.txtFour.setEnabled(false);
-        mainBinding.txtFour.setClickable(false);
-        mainBinding.txtFive.setEnabled(false);
-        mainBinding.txtFive.setClickable(false);
-        mainBinding.txtSix.setEnabled(false);
-        mainBinding.txtSix.setClickable(false);
-        mainBinding.txtSeven.setEnabled(false);
-        mainBinding.txtSeven.setClickable(false);
-        mainBinding.txtEight.setEnabled(false);
-        mainBinding.txtEight.setClickable(false);
-        mainBinding.txtNine.setEnabled(false);
-        mainBinding.txtNine.setClickable(false);
-        mainBinding.txtZero.setEnabled(false);
-        mainBinding.txtZero.setClickable(false);
-        mainBinding.imgBackSpace.setEnabled(false);
-        mainBinding.imgBackSpace.setClickable(false);
-
-        fillErrorCircleDrawables();
+        helper.disableNumber(mainBinding.txtOne);
+        helper.disableNumber(mainBinding.txtTwo);
+        helper.disableNumber(mainBinding.txtThree);
+        helper.disableNumber(mainBinding.txtFour);
+        helper.disableNumber(mainBinding.txtFive);
+        helper.disableNumber(mainBinding.txtSix);
+        helper.disableNumber(mainBinding.txtSeven);
+        helper.disableNumber(mainBinding.txtEight);
+        helper.disableNumber(mainBinding.txtNine);
+        helper.disableNumber(mainBinding.txtZero);
     }
 
     @Override
@@ -262,6 +228,9 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
             case R.id.txtZero:
                 p = '0';
                 AddCharToPin(p);
+                break;
+            case R.id.imgBackSpace:
+                removeCharFromPin();
                 break;
         }
     }
